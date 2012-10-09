@@ -1,0 +1,50 @@
+﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
+<!DOCTYPE html>
+<html lang="en">
+    <head runat="server">
+        <meta charset="utf-8" />
+        <title><asp:ContentPlaceHolder ID="TitleContent" runat="server" /></title>
+        <link href="<%: Url.Content("~/favicon.ico") %>" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+        <%: Styles.Render("~/Content/css") %>
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </head>
+    <body>
+        <header>
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <p class="site-title"><%: Html.ActionLink("your logo here", "Index", "Home") %></p>
+                </div>
+                <div class="float-right">
+                    <section id="login">
+                        <%: Html.Partial("_LoginPartial") %>
+                    </section>
+                    <nav>
+                        <ul id="menu">
+                            <li><a href="/Home" ><%: MvcSample.Resources.Shared.Global.Home %></a></li>
+                            <li><%: Html.ActionLink(MvcSample.Resources.Models.PersonResource.Title_Knights, "Index", "Knight") %></li>
+                            <li><%: Html.ActionLink(@MvcSample.Resources.Models.PersonResource.Title_Princesses, "Index", "Princess") %></li>
+                            <li><%: Html.ActionLink(@MvcSample.Resources.Models.CastleResource.Title_Castles, "Index", "Castle") %></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <div id="body">
+            <asp:ContentPlaceHolder ID="FeaturedContent" runat="server" />
+            <section class="content-wrapper main-content clear-fix">
+                <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+            </section>
+        </div>
+        <footer>
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <p>&copy; <%: DateTime.Now.Year %> - My ASP.NET MVC Application</p>
+                </div>
+            </div>
+        </footer>
+
+        <%: Scripts.Render("~/bundles/jquery") %>
+        <asp:ContentPlaceHolder ID="ScriptsSection" runat="server" />
+    </body>
+</html>
